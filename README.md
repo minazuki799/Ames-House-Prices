@@ -1,5 +1,7 @@
 <img width="1237" height="1084" alt="image_housing" src="https://github.com/user-attachments/assets/0d256193-69aa-4f3f-bf2c-cdeec64021ef" />
-# Ames Housing Price Prediction (Kaggle)🏠
+
+# Ames Housing Price Prediction (Kaggle) 🏠
+
 **Final Score:** 0.13 RMSE 
 
 ## 📌 Project Overview
@@ -7,31 +9,31 @@ This project predicts residential home prices in Ames, Iowa, using 81 explanator
 
 ## 🛠️ Tech Stack
 * **Language:** Python
-* **Libraries:** Pandas, NumPy, Scikit-learn, Seaborn, Matplotlib,swiftmltoolz(custom_made)
-* **Models:** Stacking Regressor (Ensemble of [ XGBRegressor, SVR, Ridge,LassoCV(final_estimator)] )
+* **Libraries:** Pandas, NumPy, Scikit-learn, Seaborn, Matplotlib.
+* **Custom Tools:** `swiftmltoolz` — A custom-built utility library containing helper functions for automated data cleaning, missing value imputation, and model evaluation.
+* **Models:** Stacking Regressor (Ensemble of XGBRegressor, SVR, Ridge, and LassoCV as the final_estimator).
 
 ## 📊 Key Insights from EDA
-* **Target Distribution:** The house prices were right-skewed, so I applied a **Log-Transformation** to normalize the target.
+* **Target Distribution:** House prices were right-skewed, so I applied a **Log-Transformation** to normalize the target and improve model convergence.
 * **Top Correlations:** Features like `OverallQual`, `GrLivArea`, and `GarageCars` showed the strongest positive correlation with `SalePrice`.
 
 ## ⚙️ Feature Engineering & Preprocessing
-* **Missing Values:** Filled missing categorical data with "No" to indicate the abesence of the feature and numerical data with  0. A pipeline which imputes missing categorical data with the mode and missing numerical data with mean was implemented to act as a safeguard.
-* **New Features:** Created `TotalSF` (Total Square Footage) by combining basement and floor areas to capture overall house size.
-Created `House_age` (Age of the house) by subtracting the year the house was sold from the year it was built.
-Created `HouseRemodel_age` (Age of the house after remodelling) by subtracting the year the house was sold from the year it was remodelled.
-Created `TotalArea` (Total living area) by combining the ground living area in square feet with the basment area.
-Created `TotalBaths` (Total no of baths) by combining the both the full and half baths above and below ground level.
-Created `TotalPorshSF` (Total porsh area in square feet) by combining the all the porsh area in square feet[WoodDeckSF: Wood deck area in square feet, OpenPorchSF: Open porch area in square feet,EnclosedPorch: Enclosed porch area in square feet,3SsnPorch: Three season porch area in square feet,ScreenPorch: Screen porch area in square feet].
-
-* **Encoding:** Used One-Hot Encoding and Ordinal_Encoding for categorical variables.
+* **Missing Values:** Categorical data filled with "No" (feature absence); numerical data filled with 0. A safeguard pipeline was used to impute remaining categorical data with the mode and numerical data with the mean.
+* **Feature Engineering:**
+    * `TotalSF`: Combined basement and floor areas.
+    * `House_age` & `HouseRemodel_age`: Calculated years from sale date to capture depreciation/updates.
+    * `TotalArea`: Combined ground living area and basement area.
+    * `TotalBaths`: Consolidated full and half baths above and below ground.
+    * `TotalPorchSF`: Aggregated area from Wood Deck, Open Porch, Enclosed, 3-Season, and Screen porches.
+* **Encoding:** Applied One-Hot Encoding and Ordinal Encoding where appropriate.
 
 ## 🚀 Model Selection
-I initially trained [XGBRegressor, SVR, Ridge, LogisticRegression, RandomForestRegressor]  but consequently opted for a **Stacking Regressor** to ensemble the models. 
-* **Base Models:** [XGBRegressor], [SVR], [Ridge]
-* **Final Estimator:** [LassoCV]
-* **Final Performance:** 0.13 RMSE on the public leaderboard.
+I evaluated multiple models including RandomForest and Logistic Regression before selecting a **Stacking Regressor** for the final submission.
+* **Base Models:** XGBRegressor, SVR, Ridge
+* **Final Estimator:** LassoCV
+* **Final Performance:** 0.13 RMSE on the Kaggle Public Leaderboard.
 
 ## 📁 Repository Structure
-* `notebooks/`: Contains main Jupyter Notebook.
-* `data/`: Original Kaggle datasets (train.csv, test.csv,data_descrition.txt).
+* `notebooks/`: Contains the main Jupyter Notebook with EDA and modeling.
+* `data/`: Original Kaggle datasets (`train.csv`, `test.csv`, `data_description.txt`).
 * `submissions/`: CSV files submitted to Kaggle.
