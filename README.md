@@ -1,5 +1,5 @@
 <img width="1237" height="1084" alt="image_housing" src="https://github.com/user-attachments/assets/0d256193-69aa-4f3f-bf2c-cdeec64021ef" />
-#Ames Housing Price Prediction (Kaggle)🏠
+# Ames Housing Price Prediction (Kaggle)🏠
 **Final Score:** 0.13 RMSE 
 
 ## 📌 Project Overview
